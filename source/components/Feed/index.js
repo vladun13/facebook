@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import moment from 'moment';
 
 // Components
+import { withProfile } from 'components/HOC/withProfile';
 import StatusBar from 'components/StatusBar';
 import Composer from 'components/Composer';
 import Post from 'components/Post';
@@ -12,15 +13,8 @@ import Spinner from 'components/Spinner';
 import Styles from './styles.m.css';
 import { getUniqueID, delay } from 'instruments';
 
+@withProfile
 export default class Feed extends Component {
-	constructor() {
-		super();
-
-		this._createPost = this._createPost.bind(this);	
-		this._setPostsFetchingState = this._setPostsFetchingState.bind(this);	
-		this._likePost = this._likePost.bind(this);	
-		this._removePost = this._removePost.bind(this);	
-	}
 	state = {
 		posts: [
 		{ 
@@ -38,17 +32,17 @@ export default class Feed extends Component {
 	isPostFetching: false,
 };
 
-	_setPostsFetchingState(state) {
+	_setPostsFetchingState = (state) => {
 		this.setState({
 			isPostFetching: state,
 		})
 	}
 
-	async _createPost (comment) {
+	_createPost = async (comment) => {
 		this._setPostsFetchingState(true)
 		const post = {
 			id: getUniqueID(),
-			created: moment.now(),
+			created: moment.utc().unix(),
 			comment,
 			likes: [],
 		}
@@ -61,7 +55,7 @@ export default class Feed extends Component {
 		}))
 	}
 
-	async _likePost(id) {
+	_likePost = async (id) => {
 		const { currentUserFirstName, currentUserLastName } = this.props;
 		this._setPostsFetchingState(true);
 
@@ -85,19 +79,17 @@ export default class Feed extends Component {
 		this.setState({
 			posts: newPosts,
 			isPostFetching: false,
-		})
+		});
 	}
 
-	async _removePost(id) {
-		this._setPostsFetchingState(true)
-		const post = this.state.post;
-		this.state.posts.splice(id, 1)
-
-		this.setState ({
-			posts: this.state.posts
-		})
-	}
-
+	_removePost = async (id) => {
+		this._setPostsFetchingState(true);
+		await delay(1200);
+		this.setState(({ posts }) => ({
+			posts: posts.filter((post) => post.id !== id),
+			isPostFetching: false,
+		}));
+	}	
 
 	render() {
 		const { posts, isPostFetching } = this.state;
