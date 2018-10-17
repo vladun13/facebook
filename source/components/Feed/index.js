@@ -22,7 +22,10 @@ export default class Feed extends Component {
 };
 	
 	componentDidMount(){
-		const { currentUserFirstName, currentUserLastName } = this.props;
+		const { 
+			currentUserFirstName,
+			currentUserLastName
+			} = this.props;
 		this._fetchPosts();
 		socket.emit('join', GROUP_ID);
 		socket.on('create', (postJSON) => {

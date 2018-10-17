@@ -38,8 +38,7 @@ export default class Post extends Component {
                 currentUserLastName)
 
         return  `${firstName} ${lastName}` === 
-                `${currentUserFirstName} 
-                 ${currentUserLastName}` ? (
+                `${currentUserFirstName} ${currentUserLastName}` ? (
                  <span className = { Styles.cross }
                  onClick = { this._removePost } />
                 ) : null;
