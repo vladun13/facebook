@@ -49,7 +49,7 @@ export default class Like extends Component {
 		return likes.some(({ firstName, lastName }) => {
 			return (
 				`${firstName} ${lastName}` === 
-				`${currentUserFirstName} ${currentUserLastName}`
+				`${firstName} ${lastName}`
 			);
 		});
 	}
@@ -81,9 +81,9 @@ export default class Like extends Component {
 		if (likes.length === 1 && likedByMe) {
 			return `${currentUserFirstName} ${currentUserLastName}`;
 		} else if (likes.length === 2 && likedByMe) {
-			return 'You and ${likes.length - 1} other'
+			return `You and ${likes.length - 1} other`
 		} else if (likedByMe) {
-			return 'You and ${likes.length - 1} others'
+			return `You and ${likes.length - 1} others`
 		}
 
 		return likes.length;
