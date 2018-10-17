@@ -27,15 +27,25 @@ export default class Post extends Component {
     }
 
     _getCross = () => {
-        const { firstName, lastName, currentUserFirstName, currentUserLastName } = this.props;
+        const { firstName,
+                lastName,
+                currentUserFirstName,
+                currentUserLastName
+                } = this.props;
+        console.log(firstName,
+                lastName,
+                currentUserFirstName,
+                currentUserLastName)
 
-        return `${firstName} ${lastName}` === 
-        `${currentUserFirstName} ${currentUserLastName}` ? (
-            <span className = { Styles.cross } onClick = { this._removePost } />
-        ) : null;
-    }
+        return  `${firstName} ${lastName}` === 
+                `${currentUserFirstName} 
+                 ${currentUserLastName}` ? (
+                 <span className = { Styles.cross }
+                 onClick = { this._removePost } />
+                ) : null;
+            }
 
-	render () {
+    render () {
         const { comment,
                 created,
                 _likePost,
