@@ -32,11 +32,6 @@ export default class Post extends Component {
                 currentUserFirstName,
                 currentUserLastName
                 } = this.props;
-        console.log(firstName,
-                lastName,
-                currentUserFirstName,
-                currentUserLastName)
-
         return  `${firstName} ${lastName}` === 
                 `${currentUserFirstName} ${currentUserLastName}` ? (
                  <span className = { Styles.cross }

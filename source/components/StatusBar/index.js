@@ -31,7 +31,9 @@ export default class StatusBar extends Component {
 		socket.removeListener('disconnect');
 	}
 	render() {
-        const { avatar, currentUserFirstName, currentUserLastName } = this.props;
+        const { avatar,
+		        currentUserFirstName,
+		        currentUserLastName } = this.props;
         const { online } = this.state;
 
         const statusStyle = cx(Styles.status, {
@@ -57,4 +59,3 @@ export default class StatusBar extends Component {
 		);
 	}
 }
-withProfile(StatusBar); 

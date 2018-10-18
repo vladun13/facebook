@@ -74,7 +74,10 @@ export default class Like extends Component {
 	}
 
 	_getLikesDescription = () => {
-		const { likes, currentUserLastName, currentUserFirstName } = this.props;
+		const { likes,
+				currentUserLastName,
+				currentUserFirstName
+				} = this.props;
 
 		const likedByMe = this._getLikedByMe();
 
