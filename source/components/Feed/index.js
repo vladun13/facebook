@@ -29,14 +29,19 @@ export default class Feed extends Component {
 };
 	
 	componentDidMount(){
+		
 		const { 
 			currentUserFirstName,
 			currentUserLastName
 			} = this.props;
+		
 		this._fetchPosts();
+		
 		socket.emit('join', GROUP_ID);
+		
 		socket.on('create', (postJSON) => {
-			const { data: createdPost, meta } = JSON.parse(postJSON);
+			const { data: createdPost, meta } = 
+			JSON.parse(postJSON);
 
 		if (
 			`${currentUserFirstName} ${currentUserLastName}` !==
@@ -50,7 +55,8 @@ export default class Feed extends Component {
 		})
 
 	socket.on('remove', (postJSON) => {
-			const { data: removedPost, meta } = JSON.parse(postJSON);
+			const { data: removedPost, meta } =
+			JSON.parse(postJSON);
 
 		if (
 			`${currentUserFirstName} ${currentUserLastName}` !==
@@ -64,12 +70,15 @@ export default class Feed extends Component {
 
 
 	socket.on('like', (postJSON) => {
-			const { data: likedPost, meta } = JSON.parse(postJSON);
+			
+			const { data: likedPost, meta } = 
+			JSON.parse(postJSON);
 
 		 	if(
 	        `${currentUserFirstName} ${currentUserLastName}` !==
 	        `${meta.authorFirstName} ${meta.authorLastName}`
 			) {
+        
         this.setState(({ posts }) => ({
           posts: posts.map(
             (post) => post.id === likedPost.id ? likedPost : post,
@@ -78,7 +87,6 @@ export default class Feed extends Component {
         }));
       }
     });
-
   }
 
 

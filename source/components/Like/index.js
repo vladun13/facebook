@@ -44,7 +44,11 @@ export default class Like extends Component {
 	}
 
 	_getLikedByMe = () => {
-		const { currentUserFirstName, currentUserLastName, likes } = this.props;
+		const { 
+				currentUserFirstName,
+				currentUserLastName,
+				likes 
+			} = this.props;
 
 		return likes.some(({ firstName, lastName }) => {
 			return (
@@ -74,15 +78,17 @@ export default class Like extends Component {
 	}
 
 	_getLikesDescription = () => {
-		const { likes,
+		const { 
+				likes,
 				currentUserLastName,
 				currentUserFirstName
-				} = this.props;
+			   } = this.props;
 
 		const likedByMe = this._getLikedByMe();
 
 		if (likes.length === 1 && likedByMe) {
-			return `${currentUserFirstName} ${currentUserLastName}`;
+			return `${currentUserFirstName}
+					${currentUserLastName}`;
 		} else if (likes.length === 2 && likedByMe) {
 			return `You and ${likes.length - 1} other`
 		} else if (likedByMe) {
