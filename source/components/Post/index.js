@@ -32,15 +32,16 @@ export default class Post extends Component {
                 currentUserFirstName,
                 currentUserLastName
                 } = this.props;
-        return  `${firstName} ${lastName}` === 
-                `${currentUserFirstName} ${currentUserLastName}` ? (
+        
+        return  `${firstName} ${lastName}` === `${currentUserFirstName} ${currentUserLastName}` ? (
                  <span className = { Styles.cross }
                  onClick = { this._removePost } />
                 ) : null;
             }
 
     render () {
-        const { comment,
+        const { 
+                comment,
                 created,
                 _likePost,
                 id,

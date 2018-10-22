@@ -26,15 +26,18 @@ export default class Feed extends Component {
 	state = {
 		posts: [],
 		isPostFetching: false,
-};
+	};
 	
 	componentDidMount(){
 		const { 
 			currentUserFirstName,
 			currentUserLastName
 			} = this.props;
+
 		this._fetchPosts();
+
 		socket.emit('join', GROUP_ID);
+
 		socket.on('create', (postJSON) => {
 			const { data: createdPost, meta } = JSON.parse(postJSON);
 
@@ -49,7 +52,7 @@ export default class Feed extends Component {
 			}
 		})
 
-	socket.on('remove', (postJSON) => {
+		socket.on('remove', (postJSON) => {
 			const { data: removedPost, meta } = JSON.parse(postJSON);
 
 		if (
@@ -63,23 +66,17 @@ export default class Feed extends Component {
 		})
 
 
-	socket.on('like', (postJSON) => {
+		socket.on('like', (postJSON) => {
 			const { data: likedPost, meta } = JSON.parse(postJSON);
 
-		 	if(
-	        `${currentUserFirstName} ${currentUserLastName}` !==
-	        `${meta.authorFirstName} ${meta.authorLastName}`
-			) {
-        this.setState(({ posts }) => ({
-          posts: posts.map(
-            (post) => post.id === likedPost.id ? likedPost : post,
-          ),
-          isPostFetching: false,
-        }));
-      }
-    });
-
-  }
+		 	this.setState(({ posts }) => ({
+		 	posts: posts.map(
+			(post) => post.id === likedPost.id ? likedPost : post,
+			),
+			isPostFetching: false,
+			}));
+		});
+	}
 
 
 	componentWillUnmount(){
@@ -164,7 +161,8 @@ export default class Feed extends Component {
 			posts: posts.filter((post) => post.id !== id),
 			isPostFetching: false,
 		}));
-	};	
+	}
+	
 
 	_animateComposerEnter = (composer) => {
 		fromTo(
@@ -173,7 +171,25 @@ export default class Feed extends Component {
 			{ opacity: 0, rotationX: 50 },
 			{ opacity: 1, rotationX: 0 },
 		);
-	};
+	}
+
+	_animatePostmanEnter = (postman) => {
+		fromTo(
+			postman,
+			1,
+			{ x: '100%' },
+			{ x: '0%' },
+		)
+	}
+
+	_animatePostmanEntered = (postman) => {
+		fromTo(
+			postman,
+			1,
+			{ x: '0%' },
+			{ x: '120%' },
+		)
+	}
 
 	render() {
 		const { posts, isPostFetching } = this.state;
@@ -214,9 +230,16 @@ export default class Feed extends Component {
 					timeout = { 4000 }>
 					<Composer _createPost = { this._createPost }/>
 				</Transition>
-				<Postman />
+				<Transition
+					appear
+					in
+					timeout = { 4000 }
+					onEnter = { this._animatePostmanEnter }
+					onEntered = { this._animatePostmanEntered }>
+					<Postman />
+				</Transition>
 				<TransitionGroup>{postsJSX}</TransitionGroup>
 			</section>
 			)
 		}
-	}	
+	}

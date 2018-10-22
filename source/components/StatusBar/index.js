@@ -45,7 +45,8 @@ export default class StatusBar extends Component {
 	render() {
         const { avatar,
 		        currentUserFirstName,
-		        currentUserLastName } = this.props;
+		        currentUserLastName
+		      } = this.props;
         const { online } = this.state;
 
         const statusStyle = cx(Styles.status, {
