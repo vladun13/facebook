@@ -15,6 +15,7 @@ import Composer from 'components/Composer';
 import Post from 'components/Post';
 import Spinner from 'components/Spinner';
 import Postman from 'components/Postman';
+import Counter from 'components/Counter';
 
 //Instruments
 import Styles from './styles.m.css';
@@ -206,7 +207,7 @@ export default class Feed extends Component {
 			 		timeout = { {
 			 			enter: 500,
 			 			exit: 400,
-			 		} }
+			 		}}
 			 		>
 					<Catcher>
 						<Post 
@@ -238,6 +239,7 @@ export default class Feed extends Component {
 					onEntered = { this._animatePostmanEntered }>
 					<Postman />
 				</Transition>
+				<Counter count = { postsJSX.length }/>
 				<TransitionGroup>{postsJSX}</TransitionGroup>
 			</section>
 			)
