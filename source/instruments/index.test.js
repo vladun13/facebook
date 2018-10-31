@@ -35,6 +35,7 @@ describe('instruments:', () => {
 
 	test('getUniqueID function should produce a string of a desired given length', () => {
 		expect(typeof getUniqueID()).toBe('string');
+		expect(getUniqueID()).toHaveLength(15);
 		expect(getUniqueID(5)).toHaveLength(5);
 		expect(getUniqueID(13)).toHaveLength(13);
 	});
@@ -53,4 +54,5 @@ describe('instruments:', () => {
 		expect(getFullApiUrl('ApiUrl', 'GROUP_ID')).toBe('ApiUrl/GROUP_ID');
 		expect(getFullApiUrl('ApiUrl', 'GROUP_ID')).toMatchSnapshot();
 	})
+
 })
