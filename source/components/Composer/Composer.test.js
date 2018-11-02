@@ -117,7 +117,9 @@ describe('Composer component:', () => {
 		});
 
 		expect(mocks._preventDefault).toHaveBeenCalledTimes(1);
+		expect(mocks._preventDefault).toMatchSnapshot();
 		expect(_submitCommentSpy).toHaveBeenCalledTimes(1);
+		expect(_submitCommentSpy).toMatchSnapshot();
 	})
 
 	test('should not call e.preventDefault() and this._submitComment when any other key pressed', () => {
@@ -127,7 +129,9 @@ describe('Composer component:', () => {
 		});
 
 		expect(mocks._preventDefault).not.toHaveBeenCalled();
+		expect(mocks._preventDefault).toMatchSnapshot();
 		expect(_submitCommentSpy).not.toHaveBeenCalled();
+		expect(_submitCommentSpy).toMatchSnapshot();
 	})
 
 });

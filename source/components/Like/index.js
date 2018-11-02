@@ -53,7 +53,7 @@ export default class Like extends Component {
 		return likes.some(({ firstName, lastName }) => {
 			return (
 				`${firstName} ${lastName}` === 
-				`${firstName} ${lastName}`
+				`${currentUserFirstName} ${currentUserLastName}`
 			);
 		});
 	}
@@ -83,7 +83,6 @@ export default class Like extends Component {
 				currentUserLastName,
 				currentUserFirstName
 			   } = this.props;
-
 		const likedByMe = this._getLikedByMe();
 
 		if (likes.length === 1 && likedByMe) {

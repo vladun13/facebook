@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Composer component: should call e.preventDefault() and this._submitComment when invoked onKeyPress handler 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [],
+  ],
+  "results": Array [
+    Object {
+      "isThrow": false,
+      "value": undefined,
+    },
+  ],
+}
+`;
+
+exports[`Composer component: should call e.preventDefault() and this._submitComment when invoked onKeyPress handler 2`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [],
+  ],
+  "results": Array [
+    Object {
+      "isThrow": false,
+      "value": null,
+    },
+  ],
+}
+`;
+
+exports[`Composer component: should not call e.preventDefault() and this._submitComment when any other key pressed 1`] = `[MockFunction]`;
+
+exports[`Composer component: should not call e.preventDefault() and this._submitComment when any other key pressed 2`] = `[MockFunction]`;
