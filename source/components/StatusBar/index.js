@@ -77,7 +77,7 @@ export default class StatusBar extends Component {
 					onEnter = { this._animateStatusBarEnter }>
 					<section className = { Styles.statusBar }>
 						<div className = { statusStyle }>
-							<div>{statusMessage}</div>
+				 			<div>{statusMessage}</div>
 								<span />
 						</div>
 						<Link onClick = { this._logOut } to = '/login'>Log Out</Link>
@@ -91,3 +91,4 @@ export default class StatusBar extends Component {
 		);
 	}
 }
+
