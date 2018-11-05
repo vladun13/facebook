@@ -44,9 +44,10 @@ export default class App extends Component {
 
         return (
    	     	<Catcher>
+   	     		{
 	   	     	<Provider value = { this.state }>
 					{
-						(isLoggedIn ? <StatusBar _logOut = { this._logOut } /> : <Login _logIn = { this._logIn }/>)
+						(isLoggedIn ? <StatusBar _logOut = { this._logOut } /> : null)
 					}
 					<Switch>
 
@@ -66,6 +67,7 @@ export default class App extends Component {
 			        	}
 		        	</Switch>
 		        </Provider>
+			    }
 	        </Catcher>
     	)    
     }

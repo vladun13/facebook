@@ -19,6 +19,14 @@ export default class StatusBar extends Component {
 	};
 
 	componentDidMount () {
+		console.log('connect', socket.connected);
+
+		if(socket.connected) {
+			this.setState({
+				online: true,
+			})
+		}
+		
 		socket.on('connect', () => {
 			this.setState({
 				online: true,
