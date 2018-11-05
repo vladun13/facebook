@@ -30,6 +30,7 @@ export default class App extends Component {
 		this.setState({
 			isLoggedIn: true,
 		});
+    	const { isLoggedIn } = this.props;
 	};
 
 	_logOut = (state) => {

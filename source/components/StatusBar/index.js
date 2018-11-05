@@ -1,3 +1,4 @@
+//Core
 import React, { Component } from 'react';
 import cx from 'classnames';
 import { Transition } from 'react-transition-group';
@@ -17,7 +18,7 @@ export default class StatusBar extends Component {
 		online: false,
 	};
 
-	componentDidMount(){
+	componentDidMount () {
 		socket.on('connect', () => {
 			this.setState({
 				online: true,
@@ -29,12 +30,12 @@ export default class StatusBar extends Component {
 				online: false,
 			});
 		});
-	}
+	};
 
-	componentWillUnmount(){
+	componentWillUnmount () {
 		socket.removeListener('connect');
 		socket.removeListener('disconnect');
-	}
+	};
 
 	_animateStatusBarEnter = (statusBar) => {
 		fromTo(
@@ -43,23 +44,30 @@ export default class StatusBar extends Component {
 			{ opacity: 0 },
 			{ opacity: 1 }
 		);
-	}; 
+	} 
+
+	_logOut = () => {
+		const { _logOut } = this.props;
+
+		_logOut()
+	}
 
 	render() {
-
+		console.log(this.state)
         const { 
         		avatar,
 		        currentUserFirstName,
 		      } = this.props;
 
         const { online } = this.state;
-
+        console.log(online);
         const statusStyle = cx(Styles.status, {
         	[Styles.online]: online,
         	[Styles.offline]: !online,
         });
 
         const statusMessage = online ? 'Online' : 'Offline';
+		console.log(statusMessage)
 
 		return (
 				<Transition
@@ -69,9 +77,10 @@ export default class StatusBar extends Component {
 					onEnter = { this._animateStatusBarEnter }>
 					<section className = { Styles.statusBar }>
 						<div className = { statusStyle }>
-							<div>{statusMessage}</div>
+				 			<div>{statusMessage}</div>
 								<span />
 						</div>
+						<Link onClick = { this._logOut } to = '/login'>Log Out</Link>
 						<Link to = '/profile'>
 							<img src= { avatar } />
 							<span>{currentUserFirstName}</span>
@@ -82,3 +91,4 @@ export default class StatusBar extends Component {
 		);
 	}
 }
+
